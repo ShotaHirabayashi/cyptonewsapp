@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="coninter">
+    <div class="jumbotron">
+        <h1 class="display-4"> Welcome to Cypto News</h1>
+        <p class="lead">Your dream can be found</p>
+    </div>
+    Copy
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"><strong>Name:</strong></th>
+          <th scope="col"><strong>Price:</strong></th>
+          <th scope="col"><strong>Daily High:</strong></th>
+          <th scope="col"><strong>Daily low:</strong></th>
+          <th scope="col"><strong>Market cap:</strong></th>
+        </tr>
+      </thead>
+      <tbody>
+            {% for key,value in price.DISPLAY.items %}
+        <tr>
+          <td>{{key}} </td>
+          <td>{{value.USD.PRICE}}</td>
+          <td>{{value.USD.HIGHDAY}}</td>
+          <td>{{value.USD.LOWDAY}} </td>
+          <td>{{value.USD.MKTCAP}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="row">
+        {% for x in  api.Data %}
+        <div class="col-sm">
+            <div class="card" style="width: 18rem;">
+                <img src="{{x.imageurl}}" class="card-img-top" alt="{{x.source}}">
+                <div class="card-body">
+                    <h5 class="card-title">{{x.title}}</h5>
+                    <p class="card-text">{{x.title}}</p>
+                    <a href="{{x.url}}" class="btn btn-scondary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

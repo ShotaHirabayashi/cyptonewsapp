@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+{% if doerror %}
+<h3>{{doerror}}</h3>
+{% else %}
+
+{% if cypto.Response %}
+{{cypto.Response}}
+{{cypto.Message}}
+{% endif %}
+
+{% for key,value in cypto.DISPLAY.items %}
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">{{key}}</h1>
+        <strong>Price:</strong>{{value.USD.PRICE}} <br>
+        <strong>Day High</strong>{{value.USD.HIGHDAY}} <br>
+        <strong>Day Low</strong>{{value.USD.LOWDAY}} <br>
+        <strong>Market cap</strong>{{value.USD.MKTCAP}}<br>
+    </div>
+</div>
+{% endfor %}
+{% endif %}
+{% endblock content %}
